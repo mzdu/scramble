@@ -32,11 +32,20 @@ class PieChartPageHandler(webapp2.RequestHandler):
         values['javascript'] = ['']
         
         doRender(self, 'piechart.html', values)
+
+class ExtractionPageHandler(webapp2.RequestHandler):
+    def get(self):
+        values = dict()
+        values['css'] = ['']
+        values['javascript'] = ['']
+        
+        doRender(self, 'extraction.html', values)
         
 app = webapp2.WSGIApplication([
                                           ('/main', MainPageHandler),
                                           ('/about', AboutPageHandler),
                                           ('/piechart', PieChartPageHandler),
+                                          ('/extraction', ExtractionPageHandler),
                                           ('/.*', MainPageHandler)
                                           ],debug = True)
     
