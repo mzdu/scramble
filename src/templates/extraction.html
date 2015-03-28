@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -29,6 +30,7 @@
     <![endif]-->
 
 </head>
+
 <body>
 
     <!-- Navigation -->
@@ -62,302 +64,150 @@
         </div>
         <!-- /.container -->
     </nav>
-
-<div id="pieChart"></div>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
-<script src="/static/js/d3pie.min.js"></script>
-<script>
-var pie = new d3pie("pieChart", {
-	"header": {
-		"title": {
-			"text": "Category Distribution -- in store",
-			"fontSize": 24,
-			"font": "open sans"
-		},
-		"subtitle": {
-			"color": "#999999",
-			"fontSize": 12,
-			"font": "open sans"
-		},
-		"titleSubtitlePadding": 9
-	},
-	"footer": {
-		"color": "#999999",
-		"fontSize": 10,
-		"font": "open sans",
-		"location": "bottom-left"
-	},
-	"size": {
-		"canvasWidth": 590
-	},
-	"data": {
-		"sortOrder": "value-desc",
-		"content": [
-				{
-					"label": "Frozen",
-					"value": 0.065,
-					"color": "#2484c1"
-				},
-				{
-					"label": "Seafood",
-					"value": 0.021,
-					"color": "#0c6197"
-				},
-				{
-					"label": "Bakery",
-					"value": 0.025,
-					"color": "#4daa4b"
-				},
-				{
-					"label": "HBC",
-					"value": 0.034,
-					"color": "#90c469"
-				},
-				{
-					"label": "Deli",
-					"value": 0.049,
-					"color": "#daca61"
-				},
-				{
-					"label": "Beer",
-					"value": 0.028,
-					"color": "#e4a14b"
-				},
-				{
-					"label": "Dairy",
-					"value": 0.107,
-					"color": "#e98125"
-				},
-				{
-					"label": "Floral",
-					"value": 0.008,
-					"color": "#cb2121"
-				},
-				{
-					"label": "GM",
-					"value": 0.02,
-					"color": "#830909"
-				},
-				{
-					"label": "Meat",
-					"value": 0.09,
-					"color": "#923e99"
-				},
-				{
-					"label": "Commercial Bakery",
-					"value": 0.019,
-					"color": "#ae83d5"
-				},
-				{
-					"label": "Produce",
-					"value": 0.112,
-					"color": "#bf273e"
-				},
-				{
-					"label": "Beverage",
-					"value": 0.03,
-					"color": "#ce2aeb"
-				},
-				{
-					"label": "G1 Grocery",
-					"value": 0.308,
-					"color": "#bca44a"
-				},
-				{
-					"label": "Case Ready Meats",
-					"value": 0.038,
-					"color": "#618d1b"
-				},
-				{
-					"label": "Wine",
-					"value": 0.043,
-					"color": "#1ee67b"
-				}
-		]
-	},
-	"labels": {
-		"outer": {
-			"pieDistance": 32
-		},
-		"inner": {
-			"hideWhenLessThanPercentage": 3
-		},
-		"mainLabel": {
-			"fontSize": 11
-		},
-		"percentage": {
-			"color": "#ffffff",
-			"decimalPlaces": 0
-		},
-		"value": {
-			"color": "#adadad",
-			"fontSize": 11
-		},
-		"lines": {
-			"enabled": true
-		}
-	},
-	"effects": {
-		"pullOutSegmentOnClick": {
-			"effect": "linear",
-			"speed": 400,
-			"size": 8
-		}
-	},
-	"misc": {
-		"gradient": {
-			"enabled": true,
-			"percentage": 100
-		}
+    <!-- Page Content -->
+    <div class="container">
+	<div><strong>Data and Comparision</strong></div>
+	<br>
+	<br>
+	<br>
+	
+	
+	<svg class="chart"></svg>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script>
+	var data = {
+	  labels: [
+	    '1. Distance', '2. Discount', '3. Sales'
+	  	],
+	  series: [
+	    {
+	      label: 'online',
+	      values: [1.73972898525, 0.597149120518, 5.14534474659]
+	    },
+	    {
+	      label: 'in-store',
+	      values: [1.98477133448, 0.680830081394, 4.93803346427]
+	    },]
+	};
+	
+	var chartWidth       = 300,
+	    barHeight        = 20,
+	    groupHeight      = barHeight * data.series.length * 2.5,
+	    gapBetweenGroups = 20,
+	    spaceForLabels   = 150,
+	    spaceForLegend   = 150;
+	
+	// Zip the series data together (first values, second values, etc.)
+	var zippedData = [];
+	for (var i=0; i<data.labels.length; i++) {
+	  for (var j=0; j<data.series.length; j++) {
+	    zippedData.push(data.series[j].values[i]);
+	  }
 	}
-});
-</script>
-<script>
-var pie2 = new d3pie("pieChart", {
-	"header": {
-		"title": {
-			"text": "Category Distribution -- online",
-			"fontSize": 24,
-			"font": "open sans"
-		},
-		"subtitle": {
-			"color": "#999999",
-			"fontSize": 12,
-			"font": "open sans"
-		},
-		"titleSubtitlePadding": 9
-	},
-	"footer": {
-		"color": "#999999",
-		"fontSize": 10,
-		"font": "open sans",
-		"location": "bottom-left"
-	},
-	"size": {
-		"canvasWidth": 590
-	},
-	"data": {
-		"sortOrder": "value-desc",
-		"content": [
-			{
-				"label": "Frozen",
-				"value": 0.066,
-				"color": "#2484c1"
-			},
-			{
-				"label": "Seafood",
-				"value": 0.007,
-				"color": "#0c6197"
-			},
-			{
-				"label": "Bakery",
-				"value": 0.010,
-				"color": "#4daa4b"
-			},
-			{
-				"label": "HBC",
-				"value": 0.021,
-				"color": "#90c469"
-			},
-			{
-				"label": "Deli",
-				"value": 0.048,
-				"color": "#daca61"
-			},
-			{
-				"label": "Beer",
-				"value": 0.013,
-				"color": "#e4a14b"
-			},
-			{
-				"label": "Dairy",
-				"value": 0.141,
-				"color": "#e98125"
-			},
-			{
-				"label": "Floral",
-				"value": 0,
-				"color": "#cb2121"
-			},
-			{
-				"label": "GM",
-				"value": 0.004,
-				"color": "#830909"
-			},
-			{
-				"label": "Meat",
-				"value": 0.093,
-				"color": "#923e99"
-			},
-			{
-				"label": "Commercial Bakery",
-				"value": 0.030,
-				"color": "#ae83d5"
-			},
-			{
-				"label": "Produce",
-				"value": 0.134,
-				"color": "#bf273e"
-			},
-			{
-				"label": "Beverage",
-				"value": 0.02,
-				"color": "#ce2aeb"
-			},
-			{
-				"label": "G1 Grocery",
-				"value": 0.345,
-				"color": "#bca44a"
-			},
-			{
-				"label": "Case Ready Meats",
-				"value": 0.043,
-				"color": "#618d1b"
-			},
-			{
-				"label": "Wine",
-				"value": 0.023,
-				"color": "#1ee67b"
-			}
-		]
-	},
-	"labels": {
-		"outer": {
-			"pieDistance": 32
-		},
-		"inner": {
-			"hideWhenLessThanPercentage": 3
-		},
-		"mainLabel": {
-			"fontSize": 11
-		},
-		"percentage": {
-			"color": "#ffffff",
-			"decimalPlaces": 0
-		},
-		"value": {
-			"color": "#adadad",
-			"fontSize": 11
-		},
-		"lines": {
-			"enabled": true
-		}
-	},
-	"effects": {
-		"pullOutSegmentOnClick": {
-			"effect": "linear",
-			"speed": 400,
-			"size": 8
-		}
-	},
-	"misc": {
-		"gradient": {
-			"enabled": true,
-			"percentage": 100
-		}
-	}
-});
-</script>
+	
+	// Color scale
+	var color = d3.scale.category20();
+	var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+	
+	var x = d3.scale.linear()
+	    .domain([0, d3.max(zippedData)])
+	    .range([0, chartWidth]);
+	
+	var y = d3.scale.linear()
+	    .range([chartHeight + gapBetweenGroups, 0]);
+	
+	var yAxis = d3.svg.axis()
+	    .scale(y)
+	    .tickFormat('')
+	    .tickSize(0)
+	    .orient("left");
+	
+	// Specify the chart area and dimensions
+	var chart = d3.select(".chart")
+	    .attr("width", spaceForLabels + chartWidth + spaceForLegend + 100)
+	    .attr("height", chartHeight + 100);
+	
+	// Create bars
+	var bar = chart.selectAll("g")
+	    .data(zippedData)
+	    .enter().append("g")
+	    .attr("transform", function(d, i) {
+	      return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i/data.series.length))) + ")";
+	    });
+	
+	// Create rectangles of the correct width
+	bar.append("rect")
+	    .attr("fill", function(d,i) { return color(i % data.series.length); })
+	    .attr("class", "bar")
+	    .attr("width", x)
+	    .attr("height", barHeight - 1);
+	
+	// Add text label in bar
+	bar.append("text")
+	    .attr("x", function(d) { return x(d) - 3; })
+	    .attr("y", barHeight / 2)
+	    .attr("fill", "red")
+	    .attr("dy", ".35em")
+	    .text(function(d) { return d; });
+	
+	// Draw labels
+	bar.append("text")
+	    .attr("class", "label")
+	    .attr("x", function(d) { return - 10; })
+	    .attr("y", groupHeight / 2)
+	    .attr("dy", ".35em")
+	    .text(function(d,i) {
+	      if (i % data.series.length === 0)
+	        return data.labels[Math.floor(i/data.series.length)];
+	      else
+	        return ""});
+	
+	chart.append("g")
+	      .attr("class", "y axis")
+	      .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
+	      .call(yAxis);
+	
+	// Draw legend
+	var legendRectSize = 18,
+	    legendSpacing  = 4;
+	
+	var legend = chart.selectAll('.legend')
+	    .data(data.series)
+	    .enter()
+	    .append('g')
+	    .attr('transform', function (d, i) {
+	        var height = legendRectSize + legendSpacing;
+	        var offset = -gapBetweenGroups/2;
+	        var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
+	        var vert = i * height - offset;
+	        return 'translate(' + horz + ',' + vert + ')';
+	    });
+	
+	legend.append('rect')
+	    .attr('width', legendRectSize)
+	    .attr('height', legendRectSize)
+	    .style('fill', function (d, i) { return color(i); })
+	    .style('stroke', function (d, i) { return color(i); });
+	
+	legend.append('text')
+	    .attr('class', 'legend')
+	    .attr('x', legendRectSize + legendSpacing)
+	    .attr('y', legendRectSize - legendSpacing)
+	    .text(function (d) { return d.label; });
+	
+	</script>
+  
+	<p>Github: <a href="https://github.com/mzdu/scramble">https://github.com/mzdu/scramble</a></p>
+	<p>Powered By: Python + Google App Engine + D3.js</p>  
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="/static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>
