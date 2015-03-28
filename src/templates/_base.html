@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Wikitheoria</title>
+{% if css %}
+	{% for path in css %}
+	<link href="{{path}}" type="text/css" rel="stylesheet" />
+	{% endfor %}
+{% endif %}
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+{% if javascript %}
+	{% for path in javascript %}
+	<script type="text/javascript" language="javascript" src="{{path}}"></script>
+	{% endfor %}
+{% endif %}
+
+
+</head>
+
+<body>
+<!-- Start of Wrapper -->
+<div id="wrapper">
+    <!-- Start of Header -->
+    <div id="base_header">
+
+	    <div id="subNav">
+	        <a href="/"><span class="mainTitle">Scramble-CLT</span></a> 
+	        
+        </div>       
+    </div>
+    <!-- End of Header -->
+    <div class="clear"></div>
+        <!-- Start of Body -->
+        <div class="bodyContent">
+            {% block bodyContent %}
+            
+            {% endblock %}
+        </div>
+        <!-- End of Body -->
+
+    <!-- Start of Footer -->
+    <div class="clear"></div>
+    <div id="footer">
+    	<p>Sponsored by HackathonCLT.
+   		</p>
+   	</div>
+    <!-- End of Footer -->
+</div>
+<!-- End of Wrapper -->
+<!-- Google analytics below to end -->
+</body>
+
+</html>
