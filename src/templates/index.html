@@ -62,34 +62,33 @@
     <!-- Page Content -->
     <div class="container">
 	<div><strong>Data and Comparision</strong></div>
+	<br>
+	<br>
+	<br>
+	
 	
 	<svg class="chart"></svg>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script>
 	var data = {
 	  labels: [
-	    'resilience', 'maintainability', 'accessibility',
-	    'uptime', 'functionality', 'impact'
-	  ],
+	    '1. Distance', '2. Discount', '3. Sales'
+	  	],
 	  series: [
 	    {
-	      label: '2012',
-	      values: [4, 8, 15, 16, 23, 42]
+	      label: 'online',
+	      values: [1.73972898525, 0.597149120518, 5.14534474659]
 	    },
 	    {
-	      label: '2013',
-	      values: [12, 43, 22, 11, 73, 25]
-	    },
-	    {
-	      label: '2014',
-	      values: [31, 28, 14, 8, 15, 21]
+	      label: 'in-store',
+	      values: [1.98477133448, 0.680830081394, 4.93803346427]
 	    },]
 	};
 	
 	var chartWidth       = 300,
 	    barHeight        = 20,
-	    groupHeight      = barHeight * data.series.length,
-	    gapBetweenGroups = 10,
+	    groupHeight      = barHeight * data.series.length * 2.5,
+	    gapBetweenGroups = 20,
 	    spaceForLabels   = 150,
 	    spaceForLegend   = 150;
 	
@@ -120,8 +119,8 @@
 	
 	// Specify the chart area and dimensions
 	var chart = d3.select(".chart")
-	    .attr("width", spaceForLabels + chartWidth + spaceForLegend)
-	    .attr("height", chartHeight);
+	    .attr("width", spaceForLabels + chartWidth + spaceForLegend + 100)
+	    .attr("height", chartHeight + 100);
 	
 	// Create bars
 	var bar = chart.selectAll("g")
