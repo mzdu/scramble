@@ -1,4 +1,4 @@
-The Sramble is hosting on http://scramble.appspot.com.
+The Sramble is hosting on http://scramble-clt.appspot.com.
 
 Authors: 
 Mingzhe Du
