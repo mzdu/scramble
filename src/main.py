@@ -25,9 +25,18 @@ class AboutPageHandler(webapp2.RequestHandler):
         
         doRender(self, 'about.html', values)
         
+class PieChartPageHandler(webapp2.RequestHandler):
+    def get(self):
+        values = dict()
+        values['css'] = ['']
+        values['javascript'] = ['']
+        
+        doRender(self, 'piechart.html', values)
+        
 app = webapp2.WSGIApplication([
                                           ('/main', MainPageHandler),
                                           ('/about', AboutPageHandler),
+                                          ('/piechart', PieChartPageHandler),
                                           ('/.*', MainPageHandler)
                                           ],debug = True)
     

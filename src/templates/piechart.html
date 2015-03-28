@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<div id="pieChart"></div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
+<script src="/static/js/d3pie.min.js"></script>
+<script>
+var pie = new d3pie("pieChart", {
+	"header": {
+		"title": {
+			"text": "Department Category Distribution",
+			"fontSize": 24,
+			"font": "open sans"
+		},
+		"subtitle": {
+			"color": "#999999",
+			"fontSize": 12,
+			"font": "open sans"
+		},
+		"titleSubtitlePadding": 9
+	},
+	"footer": {
+		"color": "#999999",
+		"fontSize": 10,
+		"font": "open sans",
+		"location": "bottom-left"
+	},
+	"size": {
+		"canvasWidth": 590
+	},
+	"data": {
+		"sortOrder": "value-desc",
+		"content": [
+			{
+				"label": "Frozen",
+				"value": 264131,
+				"color": "#2484c1"
+			},
+			{
+				"label": "Seafood",
+				"value": 218812,
+				"color": "#0c6197"
+			},
+			{
+				"label": "Bakery",
+				"value": 157618,
+				"color": "#4daa4b"
+			},
+			{
+				"label": "HBC",
+				"value": 114384,
+				"color": "#90c469"
+			},
+			{
+				"label": "Deli",
+				"value": 95002,
+				"color": "#daca61"
+			},
+			{
+				"label": "Beer",
+				"value": 78327,
+				"color": "#e4a14b"
+			},
+			{
+				"label": "Dairy",
+				"value": 67706,
+				"color": "#e98125"
+			},
+			{
+				"label": "Floral",
+				"value": 36344,
+				"color": "#cb2121"
+			},
+			{
+				"label": "GM",
+				"value": 28561,
+				"color": "#830909"
+			},
+			{
+				"label": "Meat",
+				"value": 24131,
+				"color": "#923e99"
+			},
+			{
+				"label": "Commercial Bakery",
+				"value": 100,
+				"color": "#ae83d5"
+			},
+			{
+				"label": "Produce",
+				"value": 68,
+				"color": "#bf273e"
+			},
+			{
+				"label": "Beverage",
+				"value": 218812,
+				"color": "#ce2aeb"
+			},
+			{
+				"label": "G1 Grocery",
+				"value": 157618,
+				"color": "#bca44a"
+			},
+			{
+				"label": "Case Ready Meats",
+				"value": 114384,
+				"color": "#618d1b"
+			},
+			{
+				"label": "Wine",
+				"value": 95002,
+				"color": "#1ee67b"
+			}
+		]
+	},
+	"labels": {
+		"outer": {
+			"pieDistance": 32
+		},
+		"inner": {
+			"hideWhenLessThanPercentage": 3
+		},
+		"mainLabel": {
+			"fontSize": 11
+		},
+		"percentage": {
+			"color": "#ffffff",
+			"decimalPlaces": 0
+		},
+		"value": {
+			"color": "#adadad",
+			"fontSize": 11
+		},
+		"lines": {
+			"enabled": true
+		}
+	},
+	"effects": {
+		"pullOutSegmentOnClick": {
+			"effect": "linear",
+			"speed": 400,
+			"size": 8
+		}
+	},
+	"misc": {
+		"gradient": {
+			"enabled": true,
+			"percentage": 100
+		}
+	}
+});
+</script>
+
+</body>
+</html>
