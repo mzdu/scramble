@@ -1,133 +1,208 @@
-{% extends "_base.html" %}
-{% block bodyContent %}
+<!DOCTYPE html>
+<html lang="en">
 
-<svg class="chart"></svg>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
-var data = {
-  labels: [
-    'resilience', 'maintainability', 'accessibility',
-    'uptime', 'functionality', 'impact'
-  ],
-  series: [
-    {
-      label: '2012',
-      values: [4, 8, 15, 16, 23, 42]
-    },
-    {
-      label: '2013',
-      values: [12, 43, 22, 11, 73, 25]
-    },
-    {
-      label: '2014',
-      values: [31, 28, 14, 8, 15, 21]
-    },]
-};
+<head>
 
-var chartWidth       = 300,
-    barHeight        = 20,
-    groupHeight      = barHeight * data.series.length,
-    gapBetweenGroups = 10,
-    spaceForLabels   = 150,
-    spaceForLegend   = 150;
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-// Zip the series data together (first values, second values, etc.)
-var zippedData = [];
-for (var i=0; i<data.labels.length; i++) {
-  for (var j=0; j<data.series.length; j++) {
-    zippedData.push(data.series[j].values[i]);
-  }
-}
+    <title>Scramble-CLT</title>
 
-// Color scale
-var color = d3.scale.category20();
-var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
-var x = d3.scale.linear()
-    .domain([0, d3.max(zippedData)])
-    .range([0, chartWidth]);
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    </style>
 
-var y = d3.scale.linear()
-    .range([chartHeight + gapBetweenGroups, 0]);
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .tickFormat('')
-    .tickSize(0)
-    .orient("left");
+</head>
 
-// Specify the chart area and dimensions
-var chart = d3.select(".chart")
-    .attr("width", spaceForLabels + chartWidth + spaceForLegend)
-    .attr("height", chartHeight);
+<body>
 
-// Create bars
-var bar = chart.selectAll("g")
-    .data(zippedData)
-    .enter().append("g")
-    .attr("transform", function(d, i) {
-      return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i/data.series.length))) + ")";
-    });
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Scramble-CLT</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
 
-// Create rectangles of the correct width
-bar.append("rect")
-    .attr("fill", function(d,i) { return color(i % data.series.length); })
-    .attr("class", "bar")
-    .attr("width", x)
-    .attr("height", barHeight - 1);
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+	<div><strong>Data and Comparision</strong></div>
+	
+	<svg class="chart"></svg>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script>
+	var data = {
+	  labels: [
+	    'resilience', 'maintainability', 'accessibility',
+	    'uptime', 'functionality', 'impact'
+	  ],
+	  series: [
+	    {
+	      label: '2012',
+	      values: [4, 8, 15, 16, 23, 42]
+	    },
+	    {
+	      label: '2013',
+	      values: [12, 43, 22, 11, 73, 25]
+	    },
+	    {
+	      label: '2014',
+	      values: [31, 28, 14, 8, 15, 21]
+	    },]
+	};
+	
+	var chartWidth       = 300,
+	    barHeight        = 20,
+	    groupHeight      = barHeight * data.series.length,
+	    gapBetweenGroups = 10,
+	    spaceForLabels   = 150,
+	    spaceForLegend   = 150;
+	
+	// Zip the series data together (first values, second values, etc.)
+	var zippedData = [];
+	for (var i=0; i<data.labels.length; i++) {
+	  for (var j=0; j<data.series.length; j++) {
+	    zippedData.push(data.series[j].values[i]);
+	  }
+	}
+	
+	// Color scale
+	var color = d3.scale.category20();
+	var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+	
+	var x = d3.scale.linear()
+	    .domain([0, d3.max(zippedData)])
+	    .range([0, chartWidth]);
+	
+	var y = d3.scale.linear()
+	    .range([chartHeight + gapBetweenGroups, 0]);
+	
+	var yAxis = d3.svg.axis()
+	    .scale(y)
+	    .tickFormat('')
+	    .tickSize(0)
+	    .orient("left");
+	
+	// Specify the chart area and dimensions
+	var chart = d3.select(".chart")
+	    .attr("width", spaceForLabels + chartWidth + spaceForLegend)
+	    .attr("height", chartHeight);
+	
+	// Create bars
+	var bar = chart.selectAll("g")
+	    .data(zippedData)
+	    .enter().append("g")
+	    .attr("transform", function(d, i) {
+	      return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i/data.series.length))) + ")";
+	    });
+	
+	// Create rectangles of the correct width
+	bar.append("rect")
+	    .attr("fill", function(d,i) { return color(i % data.series.length); })
+	    .attr("class", "bar")
+	    .attr("width", x)
+	    .attr("height", barHeight - 1);
+	
+	// Add text label in bar
+	bar.append("text")
+	    .attr("x", function(d) { return x(d) - 3; })
+	    .attr("y", barHeight / 2)
+	    .attr("fill", "red")
+	    .attr("dy", ".35em")
+	    .text(function(d) { return d; });
+	
+	// Draw labels
+	bar.append("text")
+	    .attr("class", "label")
+	    .attr("x", function(d) { return - 10; })
+	    .attr("y", groupHeight / 2)
+	    .attr("dy", ".35em")
+	    .text(function(d,i) {
+	      if (i % data.series.length === 0)
+	        return data.labels[Math.floor(i/data.series.length)];
+	      else
+	        return ""});
+	
+	chart.append("g")
+	      .attr("class", "y axis")
+	      .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
+	      .call(yAxis);
+	
+	// Draw legend
+	var legendRectSize = 18,
+	    legendSpacing  = 4;
+	
+	var legend = chart.selectAll('.legend')
+	    .data(data.series)
+	    .enter()
+	    .append('g')
+	    .attr('transform', function (d, i) {
+	        var height = legendRectSize + legendSpacing;
+	        var offset = -gapBetweenGroups/2;
+	        var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
+	        var vert = i * height - offset;
+	        return 'translate(' + horz + ',' + vert + ')';
+	    });
+	
+	legend.append('rect')
+	    .attr('width', legendRectSize)
+	    .attr('height', legendRectSize)
+	    .style('fill', function (d, i) { return color(i); })
+	    .style('stroke', function (d, i) { return color(i); });
+	
+	legend.append('text')
+	    .attr('class', 'legend')
+	    .attr('x', legendRectSize + legendSpacing)
+	    .attr('y', legendRectSize - legendSpacing)
+	    .text(function (d) { return d.label; });
+	
+	</script>
+      
 
-// Add text label in bar
-bar.append("text")
-    .attr("x", function(d) { return x(d) - 3; })
-    .attr("y", barHeight / 2)
-    .attr("fill", "red")
-    .attr("dy", ".35em")
-    .text(function(d) { return d; });
+    </div>
+    <!-- /.container -->
 
-// Draw labels
-bar.append("text")
-    .attr("class", "label")
-    .attr("x", function(d) { return - 10; })
-    .attr("y", groupHeight / 2)
-    .attr("dy", ".35em")
-    .text(function(d,i) {
-      if (i % data.series.length === 0)
-        return data.labels[Math.floor(i/data.series.length)];
-      else
-        return ""});
+    <!-- jQuery Version 1.11.1 -->
+    <script src="/static/js/jquery.js"></script>
 
-chart.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
-      .call(yAxis);
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
 
-// Draw legend
-var legendRectSize = 18,
-    legendSpacing  = 4;
+</body>
 
-var legend = chart.selectAll('.legend')
-    .data(data.series)
-    .enter()
-    .append('g')
-    .attr('transform', function (d, i) {
-        var height = legendRectSize + legendSpacing;
-        var offset = -gapBetweenGroups/2;
-        var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
-        var vert = i * height - offset;
-        return 'translate(' + horz + ',' + vert + ')';
-    });
-
-legend.append('rect')
-    .attr('width', legendRectSize)
-    .attr('height', legendRectSize)
-    .style('fill', function (d, i) { return color(i); })
-    .style('stroke', function (d, i) { return color(i); });
-
-legend.append('text')
-    .attr('class', 'legend')
-    .attr('x', legendRectSize + legendSpacing)
-    .attr('y', legendRectSize - legendSpacing)
-    .text(function (d) { return d.label; });
-
-</script>
-{% endblock %}
+</html>

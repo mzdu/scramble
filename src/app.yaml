@@ -11,6 +11,9 @@ handlers:
 
 - url: /static/images
   static_dir: static/images
+ 
+- url: /static/fonts
+  static_dir: static/fonts
   
 - url: /static/css
   static_dir: static/css
