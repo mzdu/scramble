@@ -16,7 +16,7 @@ class MainPageHandler(webapp2.RequestHandler):
         values['testarea'] = "this is a test string"       
         
         
-        values['css'] = ['']
+        values['css'] = ['/static/css/main.css']
         values['javascript'] = ['']
         
         doRender(self, 'index.html', values)
