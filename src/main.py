@@ -3,7 +3,6 @@
 
 from libmain import doRender
 
- 
 import webapp2
 import logging
 
@@ -44,7 +43,7 @@ class ExtractionPageHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
                                           ('/main', MainPageHandler),
                                           ('/about', AboutPageHandler),
-                                          ('/piechart', PieChartPageHandler)
+                                          ('/piechart', PieChartPageHandler),
                                           ('/.*', MainPageHandler)
                                           ],debug = True)
     

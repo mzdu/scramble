@@ -9,7 +9,7 @@ def parsePoint(line):
     for value in values:
     	if value[1] == 'unknown':
     		value[1] = '0'
-    return LabeledPoint(values[8], [values[1]] + [values[2]] + [values[5]] + [values[9]] + values[21:])
+    return LabeledPoint(values[8], [values[2]] + [values[5]] + [values[9]] + values[21:])
     
 sc = SparkContext()
 data = sc.textFile("/data/customer_sample_no_header")
