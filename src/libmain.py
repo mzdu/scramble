@@ -1,9 +1,7 @@
-import datamodel
- 
 import jinja2
 import os
 import logging
-
+import datamodel
 
 ################ Render a Page with Jinja2 Template #########################
 
