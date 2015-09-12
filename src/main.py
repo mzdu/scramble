@@ -44,7 +44,7 @@ app = webapp2.WSGIApplication([
                                           ('/main', MainPageHandler),
                                           ('/about', AboutPageHandler),
                                           ('/piechart', PieChartPageHandler),
-                                          ('/.*', MainPageHandler)
+                                          ('/.*', PieChartPageHandler)
                                           ],debug = True)
     
 
